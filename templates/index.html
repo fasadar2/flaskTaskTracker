@@ -1,0 +1,13 @@
+
+{% include "header.html" %}
+<body>
+<a href="{{ url_for('add_task') }}">Add task</a>
+    {% for task in tasks %}
+        <p>{{task.task_name}}</p>
+        <p>{{task.task_description}}</p>
+        <p>{% if task.is_active %} Active {% else %} Not active {% endif %}</p>
+        <a href="{{ url_for('toggle_task', task_id=task.task_id) }}">Toggle task</a>
+    {% endfor %}
+
+</body>
+{% include "footer.html" %}

@@ -1,0 +1,13 @@
+
+{% include "header.html" %}
+<body>
+<form action="{{ url_for('add_task') }}" method="POST">
+    <label>Название</label>
+    <input type="text" name="name" id="name">
+    <label>Описание</label>
+    <input type="text" name="description" id="description">
+    <button type="submit">Добавить</button>
+</form>
+<a href="{{ url_for('get_tasks') }}">Назад</a>
+</body>
+{% include "footer.html" %}
