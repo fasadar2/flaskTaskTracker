@@ -1,13 +1,21 @@
 
 {% include "header.html" %}
-<body>
-<form action="{{ url_for('add_task') }}" method="POST">
-    <label>Название</label>
-    <input type="text" name="name" id="name">
-    <label>Описание</label>
-    <input type="text" name="description" id="description">
-    <button type="submit">Добавить</button>
+<body class = "d-flex align-items-center py-4 bg-body-tertiary justify-content-center custom-body" >
+<main class="form-signin w-100 m-auto">
+  <form action="{{ url_for('add_task') }}" method="POST" class = "container">
+    <div class="form-floating item">
+      <input type="text" class="form-control" id="name" name="name" placeholder="первая задача">
+      <label for="name">Название</label>
+    </div>
+    <div class="form-floating item">
+      <input type="text" class="form-control" name="description" id="description" placeholder="Простое описание">
+      <label for="description">Описание</label>
+    </div>
+
+    <button class="btn btn-primary rounded-pill px-3 itme" type="submit">Добавить</button>
 </form>
+
+</main>
 <a href="{{ url_for('get_tasks') }}">Назад</a>
 </body>
 {% include "footer.html" %}

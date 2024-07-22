@@ -1,13 +1,36 @@
 
 {% include "header.html" %}
 <body>
-<a href="{{ url_for('add_task') }}">Add task</a>
-    {% for task in tasks %}
-        <p>{{task.task_name}}</p>
-        <p>{{task.task_description}}</p>
-        <p>{% if task.is_active %} Active {% else %} Not active {% endif %}</p>
-        <a href="{{ url_for('toggle_task', task_id=task.task_id) }}">Toggle task</a>
-    {% endfor %}
+<header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <h1  class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+        <span class="fs-4">Flask + peewee TaskTracker</span>
+      </h1>
+    <ul class="nav nav-pills">
+        <li class="nav-item"><a href="{{ url_for('add_task') }}" class="nav-link active" aria-current="page"><img src="{{ url_for('static', filename='add.svg') }}" width="48" height="48"> Добавить задачу</a></li>
+      </ul>
+</header>
 
+
+
+<div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-left">
+  <div class="list-group">
+    {% for task in tasks %}
+       <a href="{{ url_for('toggle_task', task_id=task.task_id) }}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+        {% if task.is_active %}
+        <img src="{{ url_for('static', filename='Active.svg') }}" alt="twbs" width="16" height="16" class="rounded-circle flex-shrink-0">
+        {% else %}
+        <img src="{{ url_for('static', filename='NotActive.svg') }}" alt="twbs" width="16" height="16" class="rounded-circle flex-shrink-0">
+        {% endif %}
+      <div class="d-flex gap-2 w-100 justify-content-between">
+        <div>
+          <h6 class="mb-0">{{task.task_name}}</h6>
+          <p class="mb-0 opacity-75">{{task.task_description}}</p>
+        </div>
+      </div>
+    </a>
+
+    {% endfor %}
+  </div>
+</div>
 </body>
 {% include "footer.html" %}
